@@ -91,6 +91,9 @@ func parseNetdev(out []byte) (metrics.Values, error) {
 			if name == "lo" {
 				continue
 			}
+			if strings.HasPrefix(name, "veth") {
+				continue
+			}
 
 			cols := strings.Fields(kv[1])
 			if len(cols) < len(interfaceMetrics) {
